@@ -1,4 +1,6 @@
 import 'package:business_dir/models/category_model.dart';
+import 'package:business_dir/pages/description.dart';
+import 'package:business_dir/pages/review.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget
@@ -79,51 +81,94 @@ Widget SearchSection2()
 {
   return Container(
     height: 42,
-    margin: EdgeInsets.only(left:20, top: 10, right: 60),
+    width: double.infinity,
+    margin: EdgeInsets.only(left:20, top: 10),
     decoration: BoxDecoration(
     color: Colors.white,
     ),
-    child: TextField(
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: Colors.grey[100],
-          contentPadding: EdgeInsets.all(10),
-          hintText: "Search for locations",
-          hintStyle: TextStyle(
-            color: Colors.grey,
-            fontSize: 14
+    child: 
+        Row(
+          children: [
+            Expanded(
+              child: TextField(
+                autofocus: false,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[100],
+                    contentPadding: EdgeInsets.all(10),
+                    hintText: "Search for locations",
+                    hintStyle: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 14
+                      ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none
+                      ),
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Icon(Icons.search,
+                    color: Colors.grey[600],
+                    size: 20,),
+                  
+                 ),
+               ),
+                 ),
             ),
-          border: OutlineInputBorder(
+            SizedBox(width: 10,),
+            Container(
+              margin: EdgeInsets.only(right: 10),
+          height: 40,
+          width: 40,
+          decoration: BoxDecoration(
+            color: Color(0xFFFF8A80),
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide.none
-            ),
-        prefixIcon: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Icon(Icons.search,
-          color: Colors.grey[600],
-          size: 20,),
-        
-       ),
-     ),
-   )
+          ),
+          child: Center(
+            child: IconButton(
+              onPressed: (){},
+              icon: Icon(Icons.tune,
+              size: 20,
+              color: Colors.white,),
+            
+              ),
+          ),
+            )
+          ],
+        ),
  );
 }
 
 Widget CategorySection2()
 {
    
-
   return Container(
+    height: 270,
+    width: 400,
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Categories",
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: Colors.black,
-         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("Categories",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+             ),
+            ),
+            GestureDetector(
+              onTap: (){},
+              child: Text("View All",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+                fontWeight: FontWeight.bold
+              ),),
+            )
+          ],
         ),
         SizedBox(height: 16,),
         GridView.builder(
@@ -131,7 +176,7 @@ Widget CategorySection2()
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 5,
-            childAspectRatio: 0.85,
+            childAspectRatio: 0.6,
             crossAxisSpacing: 10,
             mainAxisSpacing: 15,
           ), 
@@ -157,10 +202,10 @@ Widget CategoryWidget(CategoryItem category)
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          height: 40,
-          width: 40,
+          height: 60,
+          width: 60,
           decoration: BoxDecoration(
-            color: category.color.withOpacity(0.1),
+            color: Colors.grey.withOpacity(0.1),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Icon(
@@ -170,18 +215,19 @@ Widget CategoryWidget(CategoryItem category)
           ),
         ),
         SizedBox(height: 10,),
-        Flexible(
-          child: Text(
-            category.label,
-            style: TextStyle(
-              fontSize: 12,
-              color: Colors.grey[700],
-              fontWeight: FontWeight.w500,
+            Flexible(
+              child: Text(
+              category.label,
+              style: TextStyle(
+                fontSize: 12,
+                color: Colors.grey[700],
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
+                        ),
             ),
-            textAlign: TextAlign.center,
-          ),
           
-            )
+            
       ],
     ),
   );
@@ -438,7 +484,7 @@ Widget CustomBar()
   return StatefulBuilder(
     builder: (context, setState) {
       return Container(
-        padding: EdgeInsets.all(16),
+        height: 45,
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -457,56 +503,77 @@ Widget CustomBar()
                 setState(() {
                   selected = 0;
                 });
-                print('Home button tapped!');
               },
               child: Container(
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(    
-                  color: selected== 0 ? Colors.red : Colors.transparent,
+                  color: Colors.transparent,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Icon(
                   Icons.home,
                   size: 30,
-                  color: selected== 0 ? Colors.white : Colors.grey,
+                  color: selected== 0 ? Color(0xFFE57373) : Colors.grey,
                 ),
               ),
             ),
             GestureDetector(
               onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> ReviewPerformance()));
                   setState(() {
                     selected = 1;
                   });
                 },
                 child: Container(
-                  padding: EdgeInsets.all(12),
+                  padding: EdgeInsets.all(6),
                   decoration: BoxDecoration(
-                    color: selected == 1 ? Colors.red : Colors.transparent,
+                    color:Colors.transparent,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Icon(
                     Icons.favorite,
                     size: 30,
-                    color: selected == 1? Colors.white : Colors.grey,
+                    color: selected == 1? Color(0xFFE57373) : Colors.grey,
                   ),
                 ),
             ),
             GestureDetector(
               onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> DescriptionRestaurant()));
                 setState((){
                   selected = 2;
                 });
               },
               child: Container(
-                padding: EdgeInsets.all(12),
+                padding: EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                  color: selected == 2? Colors.red : Colors.transparent,
+                  color:Colors.transparent,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Icon(
+                  Icons.search,
+                  size: 30,
+                  color: selected == 2? Color(0xFFE57373) : Colors.grey,
+
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                setState((){
+                  selected = 3;
+                });
+              },
+              child: Container(
+                padding: EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color:Colors.transparent,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Icon(
                   Icons.person,
                   size: 30,
-                  color: selected == 2? Colors.white : Colors.grey,
+                  color: selected == 3? Color(0xFFE57373) : Colors.grey,
 
                 ),
               ),

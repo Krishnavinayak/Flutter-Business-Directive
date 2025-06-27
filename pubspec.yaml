@@ -33,6 +33,7 @@ dependencies:
   flutter_svg: ^2.0.9
   flutter_native_splash: ^2.4.6
   carousel_slider: ^5.1.1
+  persistent_bottom_nav_bar_v2: ^6.1.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -60,17 +61,16 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/icons/art.png
-    - assets/icons/gym.jpg
-    - assets/icons/market.png
-    - assets/icons/beauty.png
-    - assets/icons/health.png
     - assets/icons/search.png
-    - assets/icons/filter.png
     - assets/icons/splash.jpg
-    - assets/icons/meat.jpg
-    - assets/icons/trade.png
-    - assets/icons/plt.png 
-    - assets/icons/man_.png
     - assets/icons/mc.png
     - assets/icons/bk.jpg
+    - assets/icons/r1.jpg
+    - assets/icons/r2.jpeg
+    - assets/icons/r3.jpg
+    - assets/icons/avatar1.png
+    - assets/icons/avatar2.png
+    - assets/icons/f1.jpeg
+    - assets/icons/f2.jpeg
+    - assets/icons/f3.jpg
+    - assets/icons/f4.png
